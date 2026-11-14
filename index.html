@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kwanda Websites creates clean, mobile-friendly websites for local businesses in Cape Town and beyond.">
+  <meta name="theme-color" content="#101820">
+  <title>Kwanda Websites | Websites for Growing Businesses</title>
+  <style>
+    :root {
+      --ink: #101820;
+      --ink-soft: #17232d;
+      --paper: #f6f7f4;
+      --white: #ffffff;
+      --muted: #aab5bd;
+      --line: rgba(255,255,255,.13);
+      --lime: #c7f36b;
+      --lime-dark: #9fce42;
+      --text: #18232b;
+      --soft-text: #64717a;
+      --radius: 22px;
+      --shadow: 0 18px 55px rgba(0,0,0,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      background: var(--ink);
+      color: var(--white);
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 850; letter-spacing: -.04em; font-size: 1.2rem; }
+    .brand-mark {
+      width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--lime); color: var(--ink); font-weight: 950; font-size: 1.1rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 27px; color: #d2d9de; font-size: .92rem; }
+    .nav-links a:hover { color: var(--lime); }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      background: var(--lime); color: var(--ink); font-weight: 800; border-radius: 999px;
+      padding: 12px 19px; border: 0; transition: .2s ease; cursor: pointer;
+    }
+    .nav-cta:hover, .button:hover { background: #d8ff8c; transform: translateY(-2px); }
+    .menu-toggle { display: none; background: transparent; color: white; border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; }
+    .hero {
+      background:
+        radial-gradient(circle at 82% 23%, rgba(199,243,107,.16), transparent 25%),
+        radial-gradient(circle at 8% 90%, rgba(94,151,177,.18), transparent 28%),
+        var(--ink);
+      color: var(--white); padding: 100px 0 94px; overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 60px; align-items: center; }
+    .eyebrow { color: var(--lime); text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 850; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.35rem); line-height: .99; letter-spacing: -.065em; margin: 18px 0 24px; max-width: 720px; }
+    h1 span { color: var(--lime); }
+    .hero-copy { color: #c4cdd3; font-size: 1.12rem; max-width: 570px; margin: 0 0 30px; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; }
+    .button.secondary { background: transparent; color: white; border: 1px solid rgba(255,255,255,.28); }
+    .button.secondary:hover { border-color: var(--lime); color: var(--lime); background: transparent; }
+    .hero-note { color: #aeb9c0; font-size: .86rem; margin-top: 22px; }
+    .visual-wrap { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .browser {
+      width: min(100%, 460px); background: #f9fbf7; border-radius: 20px; padding: 13px;
+      box-shadow: 0 35px 90px rgba(0,0,0,.34); transform: rotate(2deg);
+    }
+    .browser-top { display: flex; align-items: center; gap: 6px; padding: 3px 5px 13px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #c9d0d2; }
+    .address { height: 18px; border-radius: 20px; background: #e9eeea; flex: 1; margin-left: 8px; }
+    .mock-site { background: #e9eee7; border-radius: 12px; min-height: 280px; padding: 23px; color: #17232d; }
+    .mock-nav { display: flex; justify-content: space-between; align-items: center; font-weight: 900; font-size: .72rem; }
+    .mock-pill { background: #17232d; color: white; border-radius: 30px; padding: 7px 11px; font-size: .58rem; }
+    .mock-title { font-size: 2.05rem; font-weight: 950; line-height: .98; letter-spacing: -.06em; margin: 37px 0 12px; max-width: 250px; }
+    .mock-sub { font-size: .7rem; color: #64717a; max-width: 230px; }
+    .mock-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 26px; }
+    .mock-card { min-height: 72px; border-radius: 10px; background: #d6e0d2; padding: 10px; font-size: .62rem; font-weight: 800; }
+    .mock-card.dark { background: #17232d; color: white; }
+    .float-tag {
+      position: absolute; right: -5px; bottom: 25px; background: var(--lime); color: var(--ink);
+      padding: 15px 19px; border-radius: 15px; font-weight: 900; box-shadow: var(--shadow); transform: rotate(-4deg);
+    }
+    section { padding: 88px 0; }
+    .section-head { max-width: 680px; margin-bottom: 38px; }
+    .section-kicker { color: #6a8d35; text-transform: uppercase; letter-spacing: .15em; font-weight: 900; font-size: .75rem; }
+    h2 { font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.05; letter-spacing: -.055em; margin: 12px 0 15px; }
+    .section-intro { color: var(--soft-text); font-size: 1.05rem; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .service-card {
+      background: white; border: 1px solid #e7ebe5; border-radius: var(--radius); padding: 26px;
+      box-shadow: 0 8px 28px rgba(22,37,29,.035); min-height: 225px;
+    }
+    .service-icon { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; background: #eff7df; font-size: 1.4rem; margin-bottom: 22px; }
+    .service-card h3 { margin: 0 0 8px; font-size: 1.16rem; letter-spacing: -.025em; }
+    .service-card p { color: var(--soft-text); margin: 0; font-size: .94rem; }
+    .dark-section { background: var(--ink); color: white; }
+    .dark-section .section-intro { color: #b3bec5; }
+    .dark-section .section-kicker { color: var(--lime); }
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 35px; }
+    .feature { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border: 1px solid var(--line); border-radius: 16px; }
+    .check { color: var(--lime); font-size: 1.1rem; font-weight: 900; }
+    .feature strong { display: block; margin-bottom: 3px; }
+    .feature span:last-child { color: #b3bec5; font-size: .9rem; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .step { padding: 24px; background: white; border: 1px solid #e7ebe5; border-radius: 18px; }
+    .step-num { color: #789b42; font-size: .78rem; letter-spacing: .12em; font-weight: 900; }
+    .step h3 { margin: 13px 0 8px; font-size: 1.08rem; }
+    .step p { color: var(--soft-text); font-size: .9rem; margin: 0; }
+    .callout { background: #eaf3dc; border-radius: 26px; padding: 38px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .callout h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); max-width: 600px; margin: 0 0 10px; }
+    .callout p { margin: 0; color: #5d6b58; max-width: 590px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    details { background: white; border: 1px solid #e7ebe5; border-radius: 15px; padding: 19px 21px; }
+    summary { cursor: pointer; font-weight: 800; }
+    details p { color: var(--soft-text); margin: 12px 0 0; font-size: .94rem; }
+    .contact-section { background: #eaf0e5; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: start; }
+    .contact-list { display: grid; gap: 13px; margin-top: 25px; }
+    .contact-item { display: flex; gap: 13px; align-items: center; }
+    .contact-icon { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: white; }
+    .contact-item small { display: block; color: var(--soft-text); }
+    .contact-card { background: white; padding: 30px; border-radius: 22px; box-shadow: var(--shadow); }
+    .contact-card h3 { margin: 0 0 10px; font-size: 1.4rem; }
+    .contact-card p { color: var(--soft-text); margin: 0 0 20px; }
+    .contact-actions { display: grid; gap: 12px; }
+    .contact-actions .button { width: 100%; }
+    .contact-actions .button.email { background: var(--ink); color: white; }
+    footer { background: #0b1218; color: #aeb9c0; padding: 27px 0; font-size: .86rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-brand { color: white; font-weight: 850; }
+    .fineprint { font-size: .78rem; color: #87949c; margin-top: 8px; }
+    @media (max-width: 850px) {
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+      .visual-wrap { min-height: 330px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .callout { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: inline-block; }
+      .nav-cta { display: none; }
+      .nav-links {
+        display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--ink);
+        padding: 18px 22px 23px; flex-direction: column; align-items: flex-start; gap: 17px;
+        border-top: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding: 70px 0 65px; }
+      .hero-grid { gap: 18px; }
+      .visual-wrap { min-height: 300px; }
+      .browser { transform: none; }
+      .mock-site { min-height: 250px; }
+      .float-tag { right: 0; bottom: 0; }
+      section { padding: 65px 0; }
+      .services-grid, .features-grid, .process-grid, .faq-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: auto; }
+      .callout { padding: 27px; }
+      .contact-card { padding: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Kwanda Websites home">
+        <span class="brand-mark">K</span><span>Kwanda Websites</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Kwanda</a>
+        <a href="#process">How it works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Get a website <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Websites for local businesses</div>
+          <h1>Give your business a <span>stronger</span> online presence.</h1>
+          <p class="hero-copy">Kwanda Websites creates clean, modern and mobile-friendly websites that help local businesses look professional and make it easier for customers to get in touch.</p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Let's discuss your website <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#services">Explore services</a>
+          </div>
+          <p class="hero-note">Based in Cape Town, South Africa · Working with businesses of all sizes</p>
+        </div>
+        <div class="visual-wrap" aria-label="Illustration of a modern business website">
+          <div class="browser">
+            <div class="browser-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="address"></span></div>
+            <div class="mock-site">
+              <div class="mock-nav"><span>YOUR BUSINESS</span><span class="mock-pill">CONTACT US</span></div>
+              <div class="mock-title">Make a great first impression.</div>
+              <div class="mock-sub">A clear, modern website built to help customers discover your business.</div>
+              <div class="mock-bars">
+                <div class="mock-card dark">Your services<br><span style="font-weight:500">What you offer</span></div>
+                <div class="mock-card">Get in touch<br><span style="font-weight:500">Easy enquiries</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="float-tag">Designed for your business ✦</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">What we do</div>
+          <h2>Websites made for the way your business works.</h2>
+          <p class="section-intro">Whether customers need to see your services, browse your menu or contact you for a quote, we can help put the important information in one easy-to-use place.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon">✂️</div><h3>Barbershops & salons</h3><p>Showcase your services, prices, opening hours, location and booking contact details.</p></article>
+          <article class="service-card"><div class="service-icon">🚘</div><h3>Car washes & detailing</h3><p>Present your wash packages, detailing services, pricing and contact options clearly.</p></article>
+          <article class="service-card"><div class="service-icon">🍽️</div><h3>Restaurants & takeaways</h3><p>Display your menu, food options, opening times, location and order enquiries.</p></article>
+          <article class="service-card"><div class="service-icon">🛍️</div><h3>Shops & clothing brands</h3><p>Introduce your brand, highlight products and give customers a simple way to enquire.</p></article>
+          <article class="service-card"><div class="service-icon">🔧</div><h3>Trades & local services</h3><p>Explain what you do, outline service areas and make quote requests easier.</p></article>
+          <article class="service-card"><div class="service-icon">🏢</div><h3>Other small businesses</h3><p>Get a website shaped around your business, your customers and your goals.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section" id="why-us">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">The Kwanda approach</div>
+          <h2>A website should do more than just look good.</h2>
+          <p class="section-intro">It should help people understand what you offer, trust your business and take the next step.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature"><span class="check">✓</span><div><strong>Mobile-friendly layouts</strong><span>Designed to work across phones, tablets and desktop screens.</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>Clear business information</strong><span>Make your services, prices and contact details easy to find.</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>Simple customer enquiries</strong><span>Give visitors convenient ways to contact your business.</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>Made around your brand</strong><span>Use your business name, colours, images and preferred style.</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>Practical, easy-to-use design</strong><span>Keep navigation straightforward and information organised.</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>Support after launch</strong><span>Discuss updates and ongoing website maintenance when needed.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">How it works</div>
+          <h2>From your idea to your website.</h2>
+          <p class="section-intro">A straightforward process keeps the project clear from the first conversation to launch.</p>
+        </div>
+        <div class="process-grid">
+          <article class="step"><div class="step-num">STEP 01</div><h3>Tell us about your business</h3><p>We discuss your goals, customers, services and the type of website you need.</p></article>
+          <article class="step"><div class="step-num">STEP 02</div><h3>Plan the website</h3><p>We agree on the pages, content, design direction, features and project cost.</p></article>
+          <article class="step"><div class="step-num">STEP 03</div><h3>Build and review</h3><p>Your website is created and you get an opportunity to review the agreed work.</p></article>
+          <article class="step"><div class="step-num">STEP 04</div><h3>Launch</h3><p>After approval and final payment, we help get your website ready to share with customers.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="callout">
+          <div>
+            <div class="section-kicker">Ready to get started?</div>
+            <h2>Let's put your business online.</h2>
+            <p>Tell us what your business does and what you want your website to achieve. We'll discuss a suitable solution and provide a quote.</p>
+          </div>
+          <a class="button" href="#contact">Request a quote <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Frequently asked questions</div>
+          <h2>A few things you might want to know.</h2>
+        </div>
+        <div class="faq-grid">
+          <details><summary>How much does a website cost?</summary><p>The cost depends on the number of pages, features and content required. Contact us with your needs and we'll provide a quote before work begins.</p></details>
+          <details><summary>Will my website work on mobile phones?</summary><p>Yes. Websites are planned with responsive layouts so visitors can use them on mobile phones, tablets and desktop computers.</p></details>
+          <details><summary>What information do you need from me?</summary><p>Usually your business name, logo (if available), services, prices, contact details, location and photos or other content you'd like included.</p></details>
+          <details><summary>Can you update my website later?</summary><p>Yes. Website updates and ongoing maintenance can be discussed as a separate service.</p></details>
+          <details><summary>Do I need a domain name?</summary><p>A custom domain gives your website its own web address. Domain registration and hosting costs are discussed separately and should be agreed before purchase.</p></details>
+          <details><summary>How do I get started?</summary><p>Send a WhatsApp message or email with a short description of your business and the website you're looking for.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-kicker">Contact Kwanda Websites</div>
+          <h2>Have a business? Let's talk.</h2>
+          <p class="section-intro">Whether you run a barbershop, car wash, restaurant, shop or another local business, get in touch to discuss your website.</p>
+          <div class="contact-list">
+            <div class="contact-item"><span class="contact-icon">📍</span><div><strong>Location</strong><small>Cape Town, South Africa</small></div></div>
+            <div class="contact-item"><span class="contact-icon">✉️</span><div><strong>Email</strong><small>endinaye.work@gmail.com</small></div></div>
+            <div class="contact-item"><span class="contact-icon">💬</span><div><strong>WhatsApp</strong><small>068 862 5758</small></div></div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <h3>Request a website quote</h3>
+          <p>Choose how you'd like to get in touch. Include your business name and what kind of website you need.</p>
+          <div class="contact-actions">
+            <a class="button" href="https://wa.me/27688625758?text=Hi%20Kwanda%20Websites%2C%20I%27m%20interested%20in%20getting%20a%20website%20for%20my%20business.%20Can%20we%20discuss%20a%20quote%3F" target="_blank" rel="noopener">Message on WhatsApp ↗</a>
+            <a class="button email" href="mailto:endinaye.work@gmail.com?subject=Website%20Enquiry%20-%20Kwanda%20Websites">Send an email ↗</a>
+          </div>
+          <p class="fineprint">Please include your business name, the type of website you need and your preferred contact method.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><span class="footer-brand">Kwanda Websites</span><div class="fineprint">Websites for local businesses · Cape Town, South Africa</div></div>
+      <div>© <span id="year"></span> Kwanda Websites. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
